@@ -5,7 +5,7 @@ export default class Loading extends Component {
     return (
       <div className="loading">
         <h4>rooms data loading...</h4>
-        <img src={loadingGif} al="" />
+        <img src={loadingGif} alt="loading" />
       </div>
     );
   }
