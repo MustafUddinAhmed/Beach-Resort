@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import items from "./data";
+// import items from "./data";
+import Client from "./Contentful";
+
 const RoomContext = React.createContext();
 
 //<RoomContxt.Provider value={'hello}
@@ -22,26 +24,41 @@ class RoomProvider extends Component {
   };
 
   //getData
+  getData = async () => {
+    try {
+      let response = await Client.getEntries({
+        content_type: "beachResort",
+        order: "sys.createdAt"
+      });
+      let rooms = this.formatData(response.items);
+      //response.items contains all the data from contentful
+
+      //To use local data we need to use items from data.js rather than response.items
+
+      let featuredRooms = rooms.filter(room => room.featured === true);
+
+      //To know the maximum Price
+      let maxPrice = Math.max(...rooms.map(item => item.price));
+
+      //To know about maximum Size
+      let maxSize = Math.max(...rooms.map(item => item.size));
+
+      this.setState({
+        rooms, //ES6 version
+        featuredRooms,
+        sortedRooms: rooms,
+        loading: false,
+        price: maxPrice,
+        maxPrice,
+        maxSize
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   componentDidMount() {
-    let rooms = this.formatData(items);
-    let featuredRooms = rooms.filter(room => room.featured === true);
-
-    //To know the maximum Price
-    let maxPrice = Math.max(...rooms.map(item => item.price));
-
-    //To know about maximum Size
-    let maxSize = Math.max(...rooms.map(item => item.size));
-
-    this.setState({
-      rooms, //ES6 version
-      featuredRooms,
-      sortedRooms: rooms,
-      loading: false,
-      price: maxPrice,
-      maxPrice,
-      maxSize
-    });
+    this.getData();
   }
 
   formatData(items) {
