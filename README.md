@@ -8,6 +8,7 @@ The front-end of the app is created with React js with database as Contentful AP
 # Live Demo
 
 This Project is hosted in Netlify
+
 [Click here for the live Demo](https://reactjs-beach-resort.netlify.com/).
 
 
