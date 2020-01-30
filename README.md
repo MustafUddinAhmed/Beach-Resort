@@ -10,7 +10,7 @@ This Project is hosted in Netlify
 Beach-Resort is a web app which is used to display all the hotel rooms near a beach, where an user can get all the informations about various services and features of a room by exploring it.
 It provides a single platform to organize all the hotel rooms associated with a particular beach.
 
-The front-end of the app is created with React js with database as Contentful API
+The front-end of the app is created with **React js** with database as **Contentful API**
 
 # Getting Started
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
